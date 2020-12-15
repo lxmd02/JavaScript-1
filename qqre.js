@@ -248,12 +248,12 @@ function qqreadbox2() {
 function showmsg() {	
 console.log(tz)
 let d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
-let gold=Number(task.data.user.amount)
-if (notifyInterval==1&&gold >= 50000 && d.getHours()>=9 && d.getHours()<=20&&task.data.treasureBox.doneFlag==0){
+//let gold=Number(task.data.user.amount)
+if (notifyInterval==1 && d.getHours()>=9 && d.getHours()<=20&&task.data.treasureBox.doneFlag==0){
 	notify.sendNotify(jsname,tz,'');//显示所有通知
 	console.log('显示所有通知')
 }
-else if (notifyInterval==2&&gold >= 100000&&d.getHours()>=9&&d.getHours()<=20&&task.data.treasureBox.doneFlag==15){
+else if (notifyInterval==2&&d.getHours()>=9&&d.getHours()<=20&&task.data.treasureBox.doneFlag==15){
 	notify.sendNotify(jsname,kz,'')//宝箱每15次通知一次
 	console.log('宝箱每15次通知一次')
 }
