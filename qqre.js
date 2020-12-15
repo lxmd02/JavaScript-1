@@ -248,7 +248,7 @@ function qqreadbox2() {
 function showmsg() {	
 console.log(tz)
 let d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
-//let gold=Number(task.data.user.amount)
+
 if (notifyInterval==1 && d.getHours()>=9 && d.getHours()<=20&&task.data.treasureBox.doneFlag==0){
 	notify.sendNotify(jsname,tz,'');//显示所有通知
 	console.log('显示所有通知')
