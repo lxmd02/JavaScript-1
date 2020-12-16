@@ -457,10 +457,7 @@ function showmsg() {
   return new Promise(async resolve => {
     tz += `\n========= 脚本执行完毕时间-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`;
     console.log(tz);
-    if (notifyInterval == 1) $.msg(jsname, "", tz);//显示所有通知
-    else if (notifyInterval == 2 && task.data.treasureBox.doneFlag == 0) $.msg(jsname, "", tz);//宝箱领取成功通知
-    else if (notifyInterval == 3 && task.data.treasureBox.count == 0 || task.data.treasureBox.count == 15 || task.data.treasureBox.count == 30 || task.data.treasureBox.count == 45 || task.data.treasureBox.count == 60)
-      $.msg(jsname, "", tz); //宝箱每15次通知一次
+    
     resolve();
   });
 }
