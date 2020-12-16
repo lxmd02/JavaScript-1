@@ -180,7 +180,7 @@ function qqreadinfo() {
       //console.log(data);
       if (logs) $.log(`${jsname}, 用户名: ${data}`);
       const info = JSON.parse(data);
-      tz += "\n【用户信息】: " + info.data.user.nickName + "\n";
+    //  tz += "\n【用户信息】: " + info.data.user.nickName + "\n";
       resolve();
     });
   });
