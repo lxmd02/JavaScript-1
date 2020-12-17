@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        QQREAD_HEADER: ${{ secrets.QQREAD_HEADER }}
-        QQREAD_TIMEURL: ${{ secrets.QQREAD_TIMEURL }}
-        QQREAD_TIMEHEADER: ${{ secrets.QQREAD_TIMEHEADER }}
+        QQ_READ_HEADER_VAL: ${{ secrets.QQ_READ_HEADER_VAL }}
+        QQ_READ_TIME_URL_VAL: ${{ secrets.QQ_READ_TIME_URL_VAL }}
+        QQ_READ_TIME_HEADER_VAL: ${{ secrets.QQ_READ_TIME_HEADER_VAL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -41,4 +41,4 @@ jobs:
           npm install tough-cookie
       - name: '运行 【QQ阅读】'
         run: |
-          node qqreads.js
+          node qqread.js
