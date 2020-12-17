@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: 企鹅阅读
         run: |
-          git clone https://gitee.com/lxmd02/qq.git ~/qq
+          git clone https://github.com/lxmd02/qq.git ~/Task
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -40,7 +40,7 @@ jobs:
         run: |
           cd  ~/qq
           npm install
-          node qqread.js
+          node Task/qqread.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
