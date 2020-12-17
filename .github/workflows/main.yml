@@ -14,18 +14,19 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+      runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
         QQ_READ_HEADER_VAL: ${{ secrets.QQ_READ_HEADER_VAL }}
         QQ_READ_TIME_URL_VAL: ${{ secrets.QQ_READ_TIME_URL_VAL }}
         QQ_READ_TIME_HEADER_VAL: ${{ secrets.QQ_READ_TIME_HEADER_VAL }}
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 14.x
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: ${{ matrix.node-version }}
       - name: npm install
         if: env.QQ_READ_HEADER_VAL
         run: |
