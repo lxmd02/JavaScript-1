@@ -143,7 +143,7 @@ if (isGetCookie) {
   GetCookie()
 } else {
   !(async () => {
-   // await getNodeCookie();
+  await getNodeCookie();
     await QQ_READ();
     // await all();
   })()
@@ -235,7 +235,7 @@ async function QQ_READ() {
       await qqreadwithdraw();
     }
    
-    await showmsg();//通知
+   // await showmsg();//通知
   }
 }
 function showmsg() {
