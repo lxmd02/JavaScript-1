@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/lxmd02/JavaScript.git ~/JavaScript
+          git clone https://github.com/lxmd02/JavaScript-1.git ~/JavaScript-1
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -29,12 +29,12 @@ jobs:
       - name: npm install
         if: env.QQ_READ_HEADER_VAL
         run: |
-          cd ~/JavaScript
+          cd ~/JavaScript-1
           npm install
       - name: '运行 【企鹅读书】'
         if: env.QQ_READ_HEADER_VAL
         run: |
-          cd ~/JavaScript
+          cd ~/JavaScript-1
           node Task/qqread.js
         env:
           
