@@ -235,7 +235,7 @@ async function QQ_READ() {
       await qqreadwithdraw();
     }
    
-   // await showmsg();//通知
+ await showmsg();//通知
   }
 }
 function showmsg() {
@@ -323,7 +323,7 @@ function qqreadinfo() {
       timeout: 60000,
     };
     $.get(toqqreadinfourl, (error, response, data) => {
-      if (logs) $.log(`${jsname}, 用户名: ${data}`);
+      //if (logs) $.log(`${jsname}, 用户名: ${data}`);
       let info = JSON.parse(data);
       kz += `\n========== 【${info.data.user.nickName}】 ==========\n`;
       tz += `\n========== 【${info.data.user.nickName}】 ==========\n`;
