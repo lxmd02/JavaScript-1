@@ -1,28 +1,25 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 企鹅读书
+name: qqreads
 
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/7 * * * *'
-  watch:
-    types: started
-
+    - cron: '*/7 * * * *'
+  
 jobs:
   build:
+
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
         QQ_READ_HEADER_VAL: ${{ secrets.QQ_READ_HEADER_VAL }}
         QQ_READ_TIME_URL_VAL: ${{ secrets.QQ_READ_TIME_URL_VAL }}
         QQ_READ_TIME_HEADER_VAL: ${{ secrets.QQ_READ_TIME_HEADER_VAL }}
-        
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/lxmd02/qq.git ~/qq
+        uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -34,19 +31,11 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
-      
-      - name: '运行 【企鹅读书】'
-        if: env.QQ_READ_HEADER_VAL
+      - name: npm install
         run: |
-          cd ~/qq
           npm install
+          npm install got
+          npm install tough-cookie
+      - name: '运行 【QQ阅读】'
+        run: |
           node Task/qqread.js
-        env:
-          
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
-          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
