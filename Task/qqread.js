@@ -143,7 +143,7 @@ if (isGetCookie) {
   GetCookie()
 } else {
   !(async () => {
-    await getNodeCookie();
+   // await getNodeCookie();
     await QQ_READ();
     // await all();
   })()
@@ -185,15 +185,15 @@ async function QQ_READ() {
     qqreadbodyVal = QQ_READ_COOKIES[i]['qqreadbodyVal'];
     qqreadtimeurlVal = QQ_READ_COOKIES[i]['qqreadtimeurlVal'];
     qqreadtimeheaderVal = QQ_READ_COOKIES[i]['qqreadtimeheaderVal'];
-   await $.wait(5000)
+
     await qqreadinfo();//用户名
-   await $.wait(5000)
+
     await qqreadwktime();//周时长查询
-   await $.wait(5000)
+
     await qqreadconfig();//时长查询
-   await $.wait(5000)
+
     await qqreadtrack();
-   await $.wait(5000)
+
     await qqreadtask();//任务列表
     if (config.data.pageParams.todayReadSeconds / 3600 <= maxtime) {
       await qqreadtime();// 上传时长
