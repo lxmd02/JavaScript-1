@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: 企鹅阅读
         run: |
-          git clone https://github.com/lxmd02/qq.git ~/Task
+          git clone https://github.com/lxmd02/qq.git ~/qq
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
