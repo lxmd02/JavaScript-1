@@ -231,9 +231,7 @@ async function QQ_READ() {
       await $.wait(5000)
       await qqreadssr3();//阅读金币3
     }
-    if (task.data.user.amount >= 100000) {
-      await qqreadwithdraw();
-    }
+
    
  await showmsg();//通知
   }
