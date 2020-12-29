@@ -182,6 +182,8 @@ async function QQ_READ() {
       $.log(`账号${i + 1}暂未提供脚本执行所需的cookie`);
       continue
     }
+   	  nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000);  
+    daytime= new Date(new Date().toLocaleDateString()).getTime()- 8 * 60 * 60 * 1000; 
     qqreadbodyVal = QQ_READ_COOKIES[i]['qqreadbodyVal'];
     qqreadtimeurlVal = QQ_READ_COOKIES[i]['qqreadtimeurlVal'];
     qqreadtimeheaderVal = QQ_READ_COOKIES[i]['qqreadtimeheaderVal'];
@@ -232,13 +234,45 @@ async function QQ_READ() {
       await qqreadssr3();//阅读金币3
     }
 
-   
+   await qqreadtrans();//今日收益累计
  await showmsg();//通知
   }
 }
 function showmsg() {
   $.msg(jsname, "", tz); // 宝箱每15次通知一次
 }
+
+
+// 金币统计
+function qqreadtrans() {
+  return new Promise((resolve, reject) => {  
+for(var y=1;y<9;y++){
+   let day=0;
+    const toqqreadtransurl = { 
+      url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/trans/list?pn="+y, 
+      headers: JSON.parse(qqreadtimeheaderVal), 
+      timeout: 60000, 
+    };
+    $.get(toqqreadtransurl, (error, response, data) => {
+      if (logs) $.log(`${O}, 今日收益: ${data}`);
+      trans = JSON.parse(data);
+    for(var i=0;i<20;i++){
+if(trans.data.list[i].createTime>=daytime)
+  day+=trans.data.list[i].amount;
+    }
+tz+="【今日收益】:获得"+day+'\n'
+kz+="【今日收益】:获得"+day+'\n'
+resolve();
+      });
+     }
+      
+  });
+}
+
+
+
+
+
 //提现
 function qqreadwithdraw() {
   return new Promise((resolve, reject) => {
