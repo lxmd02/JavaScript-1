@@ -182,8 +182,7 @@ async function QQ_READ() {
       $.log(`账号${i + 1}暂未提供脚本执行所需的cookie`);
       continue
     }
-   	  nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000);  
-    daytime= new Date(new Date().toLocaleDateString()).getTime()- 8 * 60 * 60 * 1000; 
+   	  
     qqreadbodyVal = QQ_READ_COOKIES[i]['qqreadbodyVal'];
     qqreadtimeurlVal = QQ_READ_COOKIES[i]['qqreadtimeurlVal'];
     qqreadtimeheaderVal = QQ_READ_COOKIES[i]['qqreadtimeheaderVal'];
@@ -234,7 +233,7 @@ async function QQ_READ() {
       await qqreadssr3();//阅读金币3
     }
 
-   await qqreadtrans();//今日收益累计
+  // await qqreadtrans();//今日收益累计
  await showmsg();//通知
   }
 }
